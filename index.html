@@ -1,0 +1,53 @@
+## Step 1: Import Required library
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+url="https://raw.githubusercontent.com/Anny8910/Decision-Tree-Classification-on-Diabetes-Dataset/master/diabetes_dataset.csv"
+df=pd.read_csv(url)
+df.head()
+
+## Step 3: Check missing values
+df.isnull().sum()
+## Step 4: Convert Into Independent Feature (X) and Dependent Feature(y) Or Target(y)
+X = df.drop('Outcome', axis=1)
+y = df['Outcome']
+## Step 5: Split Data into Train and Test
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+## Step 6: Train the Decision Tree Model
+from sklearn.tree import DecisionTreeClassifier
+model = DecisionTreeClassifier(max_depth=3, random_state=42)
+model.fit(X_train, y_train)
+## Step 7: Visualize the Tree
+from sklearn.tree import plot_tree
+plt.figure(figsize=(20,10))
+plot_tree(model, 
+          feature_names=X.columns, 
+          class_names=[str(c) for c in np.unique(y)],  # ✅ fix here
+          filled=True)
+plt.show()
+## Step 8:Make Predictions
+y_pred = model.predict(X_test)
+## Step 9: Check Accuracy
+from sklearn.metrics import accuracy_score 
+print("Accuracy Score:", accuracy_score(y_test, y_pred))
+## Step 10: Classification Report
+from sklearn.metrics import classification_report
+print("Classification Report:", classification_report(y_test, y_pred))
+## Step 11: Confusion Matrix shows that the model performs well on classifying
+from sklearn.metrics import confusion_matrix
+cm=confusion_matrix(y_test, y_pred)
+plt.figure(figsize=(6, 5))
+sns.heatmap(cm, annot=True, fmt='d', cmap='viridis',
+            xticklabels=['Predicted: 0', 'Predicted: 1'],
+            yticklabels=['Actual: 0', 'Actual: 1'])
+
+# Step 3: Add labels and title
+plt.title("Confusion Matrix")
+plt.xlabel("Predicted")
+plt.ylabel("Actual")
+plt.tight_layout()
+plt.show()
