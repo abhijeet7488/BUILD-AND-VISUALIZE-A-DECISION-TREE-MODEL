@@ -28,3 +28,5 @@ After visualizing, we analyze:
 Which features are most important for classification.
 How deep the tree is.
 Whether the tree is too complex or overfitting.
+#OUTPUT:-
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/418e835e-0c99-4540-a2bf-25c761be4b79" />
