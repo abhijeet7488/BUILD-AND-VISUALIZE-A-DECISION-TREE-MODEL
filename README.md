@@ -29,4 +29,4 @@ Which features are most important for classification.
 How deep the tree is.
 Whether the tree is too complex or overfitting.
 #OUTPUT:-
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/1be3f250-c798-40c0-83d7-745f4edde794" />
+<img width="1192" height="751" alt="Image" src="https://github.com/user-attachments/assets/a7cbfb48-2181-482f-b65e-925722b43833" />
